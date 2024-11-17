@@ -1,0 +1,22 @@
+create table city (
+city_id number(9,0) not null,
+name varchar2(255) not null unique ,
+locate varchar2(255) ,
+constraint pk_city primary key (city_id,name));// مفتاح اساسي مركب 
+alter table person add primary key (person_id);//اضافة مفتاح اساسي للجدول الاول 
+alter table person drop primary key ;// ازالة المفتاح الاساسي 
+alter table person add constraint pk primary key (person_id);// طريقة اخرى لاضافة مفتاح اساسي 
+lter table person drop constraint pk ;// ازالة الكونسترينت
+alter table person add primary key (person_id);// اضافة المفتاح من جديد
+drop table city ;
+create table city (
+city_id number(9,0) not null unique,
+name varchar2(255) not null,
+location varchar2(255),
+person_id number(9,0),
+constraint fk foreign key (person_id) references person(person_id));// اضافة مفتاح اجنبي
+alter table city add primary key (city_id);// اضافة مفتاح اساسي للجدول الثاني 
+alter table city drop column city_id;
+alter table city add  city_id number(9,0);
+alter table city drop constraint fk ;// ازالة المفتاح الاجنبي
+alter table city add constraint fk foreign key(person_id) references person(person_id); // اضافة مفتاح اجنبي باستحدام الالتر 
