@@ -25,5 +25,8 @@ alter table city drop constraint chk;// حضف الكونسترينت
 alter table city add check (city_id>=100);// طريقة اخرى بدون كونسترينت
 alter table city modify name default 'gaza';// اعطاء قيمة ديفولت 
 desc city;
-alter table city modify location default 'palestine';
+alter table city modify location default 'palestine';// اعطاء قيمة ديفولت
+alter table city modify location default null;// حذف الديفولت 
+
+
 
