@@ -1,0 +1,5 @@
+drop table teachers ;// حذف جدول 
+truncate table persons;// حذف البيانات كاملة مع الحفاظ على هيكلية الجدول
+alter table persons drop column LAST_NAME; // ازالة عمود من الجدول 
+alter table persons add last_name varchar(255);// اضافة عمود على الجدول 
+desc persons;// عرض الجدول 
