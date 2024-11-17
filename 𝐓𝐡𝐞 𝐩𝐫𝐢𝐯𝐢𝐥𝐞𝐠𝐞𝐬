@@ -1,0 +1,10 @@
+create user heba2 identified by h12345; // انشاء مستخدم 
+grant connect to heba2;// منح 
+grant connect, resource, dba to heba2;// منح
+revoke connect from heba2;// سحب  
+revoke connect, resource, dba from heba2// سحب
+grant select, insert, update, delete on schema.table_name to heba2;//  بعد ما تعمل الجدول 
+revoke insert, update on schema.table_name from heba2; alter user heba2 identified by m12345 // تغيير كلمة السر 
+alter user heba2 account lock;// قفل الحساب
+ALTER USER heba2 ACCOUNT UNLOCK;// الغاء قفل الحساب 
+select 5*9 from dual;
