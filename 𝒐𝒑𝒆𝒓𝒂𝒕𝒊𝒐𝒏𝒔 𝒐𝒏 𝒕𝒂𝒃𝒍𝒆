@@ -3,3 +3,4 @@ truncate table persons;// حذف البيانات كاملة مع الحفاظ �
 alter table persons drop column LAST_NAME; // ازالة عمود من الجدول 
 alter table persons add last_name varchar(255);// اضافة عمود على الجدول 
 desc persons;// عرض الجدول 
+alter table persons add (email varchar2(255) , city varchar2(255));// اضافة اكثر من عمود بنفس الوقت 
