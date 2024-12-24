@@ -1,0 +1,14 @@
+CREATE VIEW HEBA AS SELECT EMPLOYEE_ID , FIRST_NAME FROM employees; select * from HEBA;
+// انشاء  VIEW
+select count(EMPLOYEE_ID) from HEBA group by (FIRST_NAME);
+// DATE 
+create table db( dt date );
+alter table db modify dt default CURRENT_DATE;
+alter table db ADD dbm date default SYSDATE;
+// rownum عدد الصفوف المراد اظهارها 
+select * from employees where row Num<4;  
+
+select count(*),
+extract( day from hire_date) from employees group by extract(day from hire_date) 
+order by extract(day from hire_date) asc;
+
