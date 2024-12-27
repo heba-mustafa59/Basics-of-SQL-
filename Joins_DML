@@ -1,0 +1,68 @@
+SELECT E.first_name, E.last_name, D.department_name
+FROM EMPLOYEES E JOIN DEPARTMENTS D
+ON E.department_id = D.department_id;
+***************************************
+select e.employee_id, e.first_name,d.department_name 
+from employees e left outer join departments d 
+on e.department_id = d.department_id ;
+****************************************
+select *
+from departments d join locations l  
+on d.location_id= l.location_id ;
+or
+SELECT D.department_name , L.country_id
+FROM DEPARTMENTS D
+JOIN LOCATIONS L ON D.location_id = L.location_id;
+******************************************
+SELECT D.department_name , c.country_name
+FROM DEPARTMENTS D JOIN LOCATIONS L
+ ON D.location_id = L.location_id
+JOIN 
+countries c on 
+L.country_id = c.country_id;
+********************************************
+SELECT E1.EMPLOYEE_ID as Employee1, E2.EMPLOYEE_ID as Employee2, E1.hire_date
+FROM employees E1 JOIN employees E2
+ON E1.HIRE_DATE = E2.HIRE_DATE
+AND E1.EMPLOYEE_ID != E2.EMPLOYEE_ID
+ORDER BY E1.hire_date, E1.employee_id, E2.employee_id;
+*********************************************
+select job_id from jobs
+minus 
+select job_id from employees ;
+*********************************************
+select distinct job_id from jobs
+where exists
+(
+select job_id from employees );
+**********************************************
+SELECT employee_id, first_name, last_name, department_id
+FROM employees e1
+where exists (
+select *
+from employees e2
+where e2.department_id= e1.department_id
+and e2.salary >10000);
+************************************************
+SELECT employee_id, first_name, last_name, department_id
+FROM employees 
+where salary > any ( 
+select salary from employees 
+where  department_id = 50
+);
+*************************************************
+SELECT employee_id, first_name, last_name, salary
+FROM employees
+WHERE salary > ALL (
+SELECT salary
+FROM employees
+WHERE department_id = 20
+);
+**************************************************
+
+
+
+
+
+
+
