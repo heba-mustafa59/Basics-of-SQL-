@@ -59,10 +59,20 @@ FROM employees
 WHERE department_id = 20
 );
 **************************************************
-
-
-
-
+select e.employee_id , e.first_name, e.salary
+from employees e
+where e.salary > 
+( select AVG(ee.salary) 
+from employees ee 
+where ee.department_id in(
+select eee.department_id from employees eee
+group by eee.department_id 
+having count(eee.employee_id)<5));
+***************************************************
+SELECT DISTINCT d.DEPARTMENT_ID
+FROM employees e
+JOIN departments d ON e.EMPLOYEE_ID = d.MANAGER_ID
+WHERE e.SALARY < any (SELECT SALARY FROM employees);
 
 
 
