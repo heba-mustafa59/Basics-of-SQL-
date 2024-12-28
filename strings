@@ -1,0 +1,48 @@
+SELECT 
+    INITCAP(last_name) , LENGTH(last_name) 
+FROM employees
+WHERE upper (last_name) LIKE 'J%'
+ORDER BY last_name DESC;
+or 
+SELECT 
+    INITCAP(last_name) , LENGTH(last_name) 
+FROM employees
+WHERE upper (substr(last_name,1,1)) ='J'
+ORDER BY last_name DESC;
+***************************
+SELECT e.manager_id , count (e.employee_id ) as empn
+from employees e
+where manager_id is not null
+group by manager_id;
+*************************************
+select 
+c.country_name , l.city , count ( d.department_id) as depnum
+from countries c join locations l on c.country_id = l.country_id 
+join departments d on d.location_id = l.location_id
+where 
+d.department_id in (
+select department_id 
+from employees
+group by department_id
+having count( employee_id)>=2
+)
+group by country_name , city ;
+***********************************
+select country_id, country_name 
+from countries  
+minus 
+select c.country_id, country_name 
+from countries c join locations l on c.country_id = l.country_id
+join departments d on d.location_id = l.location_id;
+****************************************
+SELECT employee_id, job_id
+FROM job_history
+INTERSECT
+SELECT employee_id, job_id
+FROM employees
+WHERE hire_date BETWEEN (SELECT MIN(start_date)
+                         FROM job_history
+                         WHERE employees.employee_id = job_history.employee_id)
+                     AND (SELECT MAX(end_date)
+                          FROM job_history
+                          WHERE employees.employee_id = job_history.employee_id);
